@@ -1,8 +1,9 @@
 const Physics = {
-  GRAVITY: 0.28,
-  LIFT: -0.52,
-  MAX_VEL_DOWN: 6,
-  MAX_VEL_UP: -7,
+  GRAVITY: 0.26,
+  LIFT: -0.54,
+  MAX_DOWN: 5.8,
+  MAX_UP: -7.5,
+  DAMPING: 0.985,
 
   update(player, inputPressed) {
     if (inputPressed) {
@@ -10,7 +11,8 @@ const Physics = {
     } else {
       player.vy += this.GRAVITY;
     }
-    player.vy = Math.max(this.MAX_VEL_UP, Math.min(this.MAX_VEL_DOWN, player.vy));
+    player.vy *= this.DAMPING;
+    player.vy = Math.max(this.MAX_UP, Math.min(this.MAX_DOWN, player.vy));
     player.y += player.vy;
   }
 };
