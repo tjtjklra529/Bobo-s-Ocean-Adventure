@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bobo's Ocean Jump</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrapper">
+    <canvas id="gameCanvas"></canvas>
+    <div id="ui-overlay"></div>
+  </div>
+
+  <!-- Core modules -->
+  <script src="core/physics.js"></script>
+  <script src="core/collision.js"></script>
+  <script src="core/player.js"></script>
+  <script src="core/ui.js"></script>
+  <script src="core/game.js"></script>
+
+  <!-- Scene & level data -->
+  <script src="scenes/coralGardenLevels.js"></script>
+  <script src="scenes/startScene.js"></script>
+  <script src="scenes/levelScene.js"></script>
+
+  <!-- Boot -->
+  <script src="main.js"></script>
+</body>
+</html>
