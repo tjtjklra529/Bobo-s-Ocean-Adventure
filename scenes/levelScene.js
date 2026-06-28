@@ -705,38 +705,9 @@ function _collectShield(ctx, r) {
   ctx.fillText('🛡', 0, 2);
 }
 
-// ─── Finish gate ───
+// ─── Finish gate — delegates to UI.drawFinishArch ───
 function _drawFinishGate(ctx, x, H) {
-  const gH = H - 115;
-  ctx.save();
-  // Glow
-  ctx.shadowColor = '#fdcb6e';
-  ctx.shadowBlur = 18;
-  // Posts
-  const g = ctx.createLinearGradient(x, 0, x+22, 0);
-  g.addColorStop(0, '#fdcb6e'); g.addColorStop(1, '#e17055');
-  ctx.fillStyle = g;
-  ctx.fillRect(x, 22, 22, gH);
-  ctx.fillRect(x + 58, 22, 22, gH);
-  // Arch
-  ctx.beginPath();
-  ctx.arc(x + 51, 22, 51, Math.PI, 0);
-  ctx.fillStyle = 'rgba(253,203,110,0.35)';
-  ctx.fill();
-  ctx.strokeStyle = '#fdcb6e';
-  ctx.lineWidth = 4;
-  ctx.stroke();
-  // Star on top
-  ctx.translate(x + 51, 22);
-  _drawStarParticle(ctx, 0, 0, 8, 18, '#ffe066');
-  ctx.translate(-(x + 51), -22);
-  // Text
-  ctx.shadowBlur = 10;
-  ctx.font = 'bold 16px Arial Rounded MT Bold, Arial';
-  ctx.fillStyle = '#ffe066';
-  ctx.textAlign = 'center';
-  ctx.fillText('FINISH', x + 51, H - 82);
-  ctx.restore();
+  UI.drawFinishArch(ctx, x + 51, H * 0.5 + 20, 1.05);
 }
 
 function _smallCoral(ctx, x, baseY, h, color) {

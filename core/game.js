@@ -381,7 +381,7 @@ const Game = {
     this._updateTrans(dt, ctx);
 
     // Mute button always visible
-    UI.drawMute(ctx, Audio.muted, this.W);
+    UI.drawMute(ctx, Audio.muted, this.W, this._t || 0);
 
     requestAnimationFrame(ts2 => this._loop(ts2));
   },
