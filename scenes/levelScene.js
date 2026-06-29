@@ -443,7 +443,7 @@ const LevelScene = {
   // ─── Complete overlay ───
   _drawComplete(ctx, game, W, H) {
     this.completeTimer += 16;
-    UI.drawWin(ctx, W, H, this.data.id, game.score, game.shellsCollected, this.starsEarned);
+    UI.drawWin(ctx, W, H, this.data.id, game.score, game.shellsCollected, this.starsEarned, game.images);
     // Win Bobo
     ctx.save();
     Player.x = W * 0.62; Player.y = H * 0.37;
@@ -707,7 +707,7 @@ function _collectShield(ctx, r) {
 
 // ─── Finish gate — delegates to UI.drawFinishArch ───
 function _drawFinishGate(ctx, x, H) {
-  UI.drawFinishArch(ctx, x + 51, H * 0.5 + 20, 1.05);
+  UI.drawFinishArch(ctx, x + 51, H * 0.5 + 20, 1.05, Game.images);
 }
 
 function _smallCoral(ctx, x, baseY, h, color) {

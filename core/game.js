@@ -41,7 +41,7 @@ const Game = {
   },
 
   _loadImages() {
-    const map = { idle:'bobo_idle', swim:'bobo_swim', boost:'bobo_boost', hit:'bobo_hit', win:'bobo_win' };
+    const map = { idle:'bobo_idle', swim:'bobo_swim', boost:'bobo_boost', hit:'bobo_hit', win:'bobo_win', btn_mute:'btn_mute', btn_unmute:'btn_unmute', finish_arch:'finish_arch' };
     for (const [k, f] of Object.entries(map)) {
       const img = new Image();
       img.src = `assets/${f}.png`;
@@ -381,7 +381,7 @@ const Game = {
     this._updateTrans(dt, ctx);
 
     // Mute button always visible
-    UI.drawMute(ctx, Audio.muted, this.W, this._t || 0);
+    UI.drawMute(ctx, Audio.muted, this.W, this._t || 0, this.images);
 
     requestAnimationFrame(ts2 => this._loop(ts2));
   },

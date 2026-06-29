@@ -214,13 +214,13 @@ const UI = {
   },
 
   // Win screen — with finish arch
-  drawWin(ctx, W, H, levelNum, score, shells, stars) {
+  drawWin(ctx, W, H, levelNum, score, shells, stars, images) {
     ctx.fillStyle = 'rgba(0,10,40,0.72)';
     ctx.fillRect(0, 0, W, H);
     this.bubblePanel(ctx, W / 2, H / 2, 340, 268);
 
     // Finish arch centered in upper portion of panel
-    this.drawFinishArch(ctx, W / 2, H / 2 - 68, 0.88);
+    this.drawFinishArch(ctx, W / 2, H / 2 - 68, 0.88, images);
 
     ctx.save();
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -234,9 +234,17 @@ const UI = {
     this.shellButton(ctx, 'Menu', W / 2 + 100, H / 2 + 115, 72, 36, { fontSize: 18 });
   },
 
-  // Mute button — matches artwork: scalloped circle, ocean interior, speaker icon
-  drawMute(ctx, muted, W, t) {
+  // Mute button — uses generated artwork image if loaded, canvas fallback
+  drawMute(ctx, muted, W, t, images) {
     const cx = W - 46, cy = 46;
+    const img = images && (muted ? images.btn_mute : images.btn_unmute);
+    if (img && img.naturalWidth > 1) {
+      const s = 88;
+      ctx.save();
+      ctx.drawImage(img, cx - s / 2, cy - s / 2, s, s);
+      ctx.restore();
+      return;
+    }
     ctx.save();
     ctx.translate(cx, cy);
 
@@ -315,9 +323,17 @@ const UI = {
     ctx.restore();
   },
 
-  // FINISH arch — drawn at the end of a level or on win screen
-  drawFinishArch(ctx, cx, cy, scale) {
+  // FINISH arch — uses generated artwork image if loaded, canvas fallback
+  drawFinishArch(ctx, cx, cy, scale, images) {
     scale = scale || 1;
+    const img = images && images.finish_arch;
+    if (img && img.naturalWidth > 1) {
+      const w = 260 * scale, h = 190 * scale;
+      ctx.save();
+      ctx.drawImage(img, cx - w / 2, cy - h / 2, w, h);
+      ctx.restore();
+      return;
+    }
     ctx.save();
     ctx.translate(cx, cy);
     ctx.scale(scale, scale);
